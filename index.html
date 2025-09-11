@@ -1,193 +1,698 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Puja Kumari — Software Developer</title>
-  <meta name="description" content="Vikas Kumar — Full-stack developer (Ruby on Rails). Portfolio, projects, blog and contact." />
-
-  <!-- Tailwind (CDN for quick prototype) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Small custom styles */
-    .glass { background: rgba(255,255,255,0.6); backdrop-filter: blur(6px); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puja Kumari - Data Engineering Expert | GCP Specialist</title>
+    <meta name="description" content="Puja Kumari - Senior Data Engineer specializing in Google Cloud Platform, Big Data, and scalable data solutions">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👩‍💻</text></svg>">
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased">
-  <!-- Container -->
-  <div class="min-h-screen flex flex-col">
-    <!-- Nav -->
-    <header class="w-full border-b bg-white/60 sticky top-0 z-30">
-      <div class="max-w-5xl mx-auto flex items-center justify-between p-4">
-        <a href="#home" class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 to-pink-500 flex items-center justify-center text-white font-bold">VK</div>
-          <div class="hidden md:block">
-            <div class="font-semibold">Vikas Kumar</div>
-            <div class="text-xs text-gray-500">Full-stack developer • Ruby on Rails</div>
-          </div>
-        </a>
-        <nav class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#projects" class="hover:underline">Projects</a>
-          <a href="#about" class="hover:underline">About</a>
-          <a href="#blog" class="hover:underline">Blog</a>
-          <a href="#contact" class="hover:underline">Contact</a>
-          <a href="https://github.com/your-username" target="_blank" rel="noopener" class="px-3 py-1 border rounded-md">GitHub</a>
-        </nav>
-        <div class="md:hidden">
-          <button id="menuBtn" aria-label="menu">☰</button>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader">
+            <div class="loader-inner">
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                                        <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+            </div>
         </div>
-      </div>
+        <p class="loading-text">Loading Portfolio...</p>
+    </div>
+
+    <!-- Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="#home">
+                    <span class="brand-text">Puja</span>
+                    <span class="brand-highlight">Kumari</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="theme-toggle" id="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </div>
+        </nav>
     </header>
 
-    <!-- Hero -->
-    <main id="home" class="flex-grow">
-      <section class="max-w-5xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">Hi — I’m Vikas Kumar.<br class="hidden sm:inline"> I build web apps and developer tools.</h1>
-          <p class="text-lg text-gray-600 mb-6">Full-stack developer specializing in Ruby on Rails, data pipelines, and AI integrations. I build maintainable systems and delightful user experiences.</p>
-          <div class="flex flex-wrap gap-3">
-            <a href="#projects" class="px-5 py-3 bg-indigo-600 text-white rounded-lg shadow hover:opacity-95">See projects</a>
-            <a href="#contact" class="px-5 py-3 border rounded-lg">Hire me</a>
-            <a href="/resume.pdf" class="px-4 py-2 text-sm border rounded-lg">Download resume</a>
-          </div>
-
-          <div class="mt-6 grid grid-cols-2 gap-3 text-sm text-gray-600">
-            <div class="p-3 glass rounded-lg">🇮🇳 Based in India</div>
-            <div class="p-3 glass rounded-lg">💼 Open to Full-time / Contract</div>
-            <div class="p-3 glass rounded-lg">📂 10+ projects</div>
-            <div class="p-3 glass rounded-lg">📧 vikas@example.com</div>
-          </div>
-        </div>
-
-        <div class="mx-auto w-full max-w-md">
-          <div class="bg-white rounded-2xl shadow p-6">
-            <img src="https://placehold.co/600x400?text=Project+Screenshot" alt="project" class="rounded-lg w-full mb-4">
-            <h3 class="font-semibold">Featured project — QuizApp</h3>
-            <p class="text-sm text-gray-600 mb-3">A school-quiz web app built with Ruby on Rails and Tailwind. Includes admin panel, student dashboards, and real-time quizzes.</p>
-            <div class="flex gap-3">
-              <a href="#projects" class="text-sm px-3 py-2 border rounded">View projects</a>
-              <a href="https://github.com/your-username/quizapp" target="_blank" rel="noopener" class="text-sm px-3 py-2 border rounded">Source</a>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-bg">
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                    <div class="shape shape-4"></div>
+                    <div class="shape shape-5"></div>
+                </div>
             </div>
-          </div>
-        </div>
-      </section>
+            
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="hero-greeting">
+                            <span class="wave">👋</span>
+                            <span class="greeting-text">Hello, I'm</span>
+                        </div>
+                        <h1 class="hero-title">
+                            <span class="title-line">Puja Kumari</span>
+                        </h1>
+                        <div class="hero-subtitle">
+                            <span class="typed-text"></span>
+                            <span class="cursor-type">|</span>
+                        </div>
+                        <p class="hero-description">
+                            Transforming raw data into actionable insights through scalable cloud-native solutions. 
+                            6+ years of experience in building enterprise-grade data pipelines on Google Cloud Platform.
+                        </p>
+                        
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="6">0</span>
+                                <span class="stat-label">Years Experience</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="4">0</span>
+                                <span class="stat-label">GCP Certifications</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" data-count="50">0</span>
+                                <span class="stat-label">% Cost Reduction</span>
+                            </div>
+                        </div>
 
-      <!-- Projects -->
-      <section id="projects" class="max-w-5xl mx-auto p-6">
-        <h2 class="text-2xl font-bold mb-4">Selected projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Project Card 1 -->
-          <article class="bg-white rounded-2xl shadow p-6">
-            <h3 class="font-semibold">QuizApp — School quiz platform</h3>
-            <p class="text-sm text-gray-600 mb-3">Rails, PostgreSQL, Redis, StimulusJS, ActionCable.</p>
-            <div class="flex justify-between items-center">
-              <div class="text-xs text-gray-500">Mar 2025</div>
-              <div class="flex gap-2">
-                <a href="#" class="text-xs px-2 py-1 border rounded">Live</a>
-                <a href="https://github.com/your-username/quizapp" target="_blank" class="text-xs px-2 py-1 border rounded">Code</a>
-              </div>
+                        <div class="hero-buttons">
+                            <a href="#projects" class="btn btn-primary">
+                                <span>View My Work</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <a href="#contact" class="btn btn-outline">
+                                <span>Get In Touch</span>
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/puja-k-327392176" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="mailto:poojakumari1107@gmail.com" class="social-link">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="tel:+916206511575" class="social-link">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hero-image">
+                        <div class="image-container">
+                            <div class="profile-card">
+                                <div class="card-inner">
+                                    <img src="assets/images/puja_kumari.png" alt="Puja Kumari" class="profile-img">
+                                    <div class="profile-overlay">
+                                        <div class="tech-icons">
+                                            <i class="fab fa-google"></i>
+                                            <i class="fas fa-database"></i>
+                                            <i class="fab fa-python"></i>
+                                            <i class="fas fa-cloud"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </article>
 
-          <!-- Project Card 2 -->
-          <article class="bg-white rounded-2xl shadow p-6">
-            <h3 class="font-semibold">Chatbot Integration</h3>
-            <p class="text-sm text-gray-600 mb-3">Rails + OpenRouter/DeepSeek integration for product search and data fallback.</p>
-            <div class="flex justify-between items-center">
-              <div class="text-xs text-gray-500">Jun 2025</div>
-              <div class="flex gap-2">
-                <a href="#" class="text-xs px-2 py-1 border rounded">Demo</a>
-                <a href="https://github.com/your-username/chatbot" target="_blank" class="text-xs px-2 py-1 border rounded">Code</a>
-              </div>
+            <div class="scroll-indicator">
+                <div class="scroll-line"></div>
+                <span class="scroll-text">Scroll Down</span>
             </div>
-          </article>
-        </div>
-      </section>
+        </section>
 
-      <!-- About -->
-      <section id="about" class="max-w-5xl mx-auto p-6">
-        <h2 class="text-2xl font-bold mb-4">About me</h2>
-        <div class="bg-white rounded-2xl shadow p-6 text-gray-700">
-          <p class="mb-3">I am a full-stack developer with 5+ years of experience building web applications, internal tools, and integrations. I enjoy writing clean code, mentoring teammates, and automating repetitive workflows.</p>
-          <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600">
-            <li>Ruby on Rails</li>
-            <li>JavaScript (ES6+), Stimulus</li>
-            <li>MySQL / PostgreSQL</li>
-            <li>Docker, Apache, Ubuntu</li>
-            <li>Airflow, BigQuery (data pipelines)</li>
-            <li>RSpec, Capybara (tests)</li>
-          </ul>
-        </div>
-      </section>
+        <!-- About Section -->
+        <section id="about" class="about section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Get to know me</span>
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-description">Passionate about turning complex data challenges into elegant solutions</p>
+                </div>
 
-      <!-- Blog teaser -->
-      <section id="blog" class="max-w-5xl mx-auto p-6">
-        <h2 class="text-2xl font-bold mb-4">Latest posts</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <article class="bg-white rounded-lg shadow p-4">
-            <h4 class="font-semibold">Mastering the Bar Exam — Strategies for law students</h4>
-            <p class="text-xs text-gray-500 mt-2">Sep 2025 • studyfetch reference</p>
-          </article>
-          <article class="bg-white rounded-lg shadow p-4">
-            <h4 class="font-semibold">What is GPA — UK system explained</h4>
-            <p class="text-xs text-gray-500 mt-2">Aug 2025</p>
-          </article>
-          <article class="bg-white rounded-lg shadow p-4">
-            <h4 class="font-semibold">Designing data quality dashboards</h4>
-            <p class="text-xs text-gray-500 mt-2">Jul 2025</p>
-          </article>
-        </div>
-      </section>
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="text-block">
+                            <h3>My Journey</h3>
+                            <p>With over 6 years in the data engineering landscape, I've evolved from handling basic ETL processes to architecting enterprise-scale data solutions that process billions of records. My expertise spans the entire data lifecycle - from ingestion and transformation to analytics and visualization.</p>
+                        </div>
 
-      <!-- Contact -->
-      <section id="contact" class="max-w-5xl mx-auto p-6 mb-12">
-        <h2 class="text-2xl font-bold mb-4">Contact</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-white rounded-2xl shadow p-6">
-            <p class="mb-3">Want to work together? Send a message or email me directly.</p>
-            <form action="mailto:vikas@example.com" method="post" encType="text/plain" class="space-y-3">
-              <input class="w-full border rounded p-2" type="text" name="name" placeholder="Your name" required>
-              <input class="w-full border rounded p-2" type="email" name="email" placeholder="Your email" required>
-              <textarea class="w-full border rounded p-2" name="message" rows="4" placeholder="Message" required></textarea>
-              <div class="flex gap-3">
-                <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded">Send</button>
-                <a href="mailto:vikas@example.com" class="px-4 py-2 border rounded">Email</a>
-              </div>
-            </form>
-          </div>
+                        <div class="text-block">
+                            <h3>What Drives Me</h3>
+                            <p>I'm passionate about solving complex data challenges and creating systems that not only work efficiently but also scale seamlessly. Whether it's reducing query costs by 50% or clearing a 7-month backlog in a week, I thrive on delivering measurable business impact through innovative technical solutions.</p>
+                        </div>
 
-          <div class="bg-white rounded-2xl shadow p-6">
-            <h4 class="font-semibold">Quick links</h4>
-            <ul class="mt-3 text-sm text-gray-600 space-y-2">
-              <li>GitHub: <a href="https://github.com/your-username" target="_blank">github.com/your-username</a></li>
-              <li>LinkedIn: <a href="https://linkedin.com/in/your-username" target="_blank">linkedin.com/in/your-username</a></li>
-              <li>Resume: <a href="/resume.pdf">/resume.pdf</a></li>
-            </ul>
-          </div>
-        </div>
-      </section>
+                        <div class="achievements-grid">
+                            <div class="achievement-item">
+                                <div class="achievement-icon">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div class="achievement-text">
+                                    <h4>Star Performer</h4>
+                                    <p>Recognized for Tokenization Initiative leadership</p>
+                                </div>
+                            </div>
+                            <div class="achievement-item">
+                                <div class="achievement-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="achievement-text">
+                                    <h4>Cost Optimization</h4>
+                                    <p>50% reduction in BigQuery costs through smart architecture</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-showcase">
+                        <h3>Technical Expertise</h3>
+                        <div class="skills-radar">
+                            <div class="skill-category">
+                                <h4>Cloud Platforms</h4>
+                                <div class="skill-bars">
+                                    <div class="skill-bar">
+                                        <span class="skill-name">Google Cloud Platform</span>
+                                        <div class="skill-progress">
+                                            <div class="skill-fill" data-width="95%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <span class="skill-name">BigQuery</span>
+                                        <div class="skill-progress">
+                                            <div class="skill-fill" data-width="92%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <span class="skill-name">Dataflow</span>
+                                        <div class="skill-progress">
+                                            <div class="skill-fill" data-width="88%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skill-category">
+                                <h4>Programming</h4>
+                                <div class="skill-bars">
+                                    <div class="skill-bar">
+                                        <span class="skill-name">Python</span>
+                                        <div class="skill-progress">
+                                            <div class="skill-fill" data-width="90%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <span class="skill-name">SQL</span>
+                                        <div class="skill-progress">
+                                            <div class="skill-fill" data-width="94%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-bar">
+                                        <span class="skill-name">Apache Beam</span>
+                                        <div class="skill-progress">
+                                            <div class="skill-fill" data-width="85%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">What I offer</span>
+                    <h2 class="section-title">Services</h2>
+                    <p class="section-description">Comprehensive data engineering solutions tailored to your needs</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h3>Data Pipeline Architecture</h3>
+                        <p>Design and implement scalable batch and real-time data pipelines using GCP services like Dataflow, Cloud Composer, and Apache Beam.</p>
+                        <div class="service-tags">
+                            <span class="tag">Dataflow</span>
+                            <span class="tag">Apache Beam</span>
+                            <span class="tag">Cloud Composer</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>BigQuery Optimization</h3>
+                        <p>Optimize your BigQuery performance and costs through strategic partitioning, clustering, and query optimization techniques.</p>
+                        <div class="service-tags">
+                            <span class="tag">BigQuery</span>
+                            <span class="tag">Cost Optimization</span>
+                            <span class="tag">Performance</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Data Security & Compliance</h3>
+                        <p>Implement robust data governance, PII tokenization, and compliance frameworks to protect sensitive information.</p>
+                        <div class="service-tags">
+                            <span class="tag">Data Governance</span>
+                            <span class="tag">PII Protection</span>
+                            <span class="tag">Compliance</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>Analytics & Visualization</h3>
+                        <p>Create insightful dashboards and analytics solutions using Qlik Sense, Looker, and custom visualization tools.</p>
+                        <div class="service-tags">
+                            <span class="tag">Qlik Sense</span>
+                            <span class="tag">Looker</span>
+                            <span class="tag">Analytics</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h3>Infrastructure as Code</h3>
+                        <p>Automate cloud infrastructure provisioning and deployment using Terraform and GitLab CI/CD pipelines.</p>
+                        <div class="service-tags">
+                            <span class="tag">Terraform</span>
+                            <span class="tag">CI/CD</span>
+                            <span class="tag">Automation</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Training & Consultation</h3>
+                        <p>Provide GCP training, best practices consultation, and technical guidance for data engineering teams.</p>
+                        <div class="service-tags">
+                            <span class="tag">Training</span>
+                            <span class="tag">Best Practices</span>
+                            <span class="tag">Mentoring</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">My work</span>
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-description">Showcasing impactful data engineering solutions</p>
+                </div>
+
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-overlay">
+                                <div class="project-tech">
+                                    <span>BigQuery</span>
+                                    <span>Dataflow</span>
+                                    <span>Python</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>CDR Backlog Processing Pipeline</h3>
+                            <p>Architected a high-performance data pipeline that cleared 7 months of Call Detail Records backlog in less than a week using parallel processing and automated scheduling.</p>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">7 months</span>
+                                    <span class="metric-label">backlog cleared</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">< 1 week</span>
+                                    <span class="metric-label">processing time</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-overlay">
+                                <div class="project-tech">
+                                    <span>Tokenization</span>
+                                    <span>DLP</span>
+                                    <span>Security</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>PII Tokenization Framework</h3>
+                            <p>Led the development of a comprehensive Data Loss Prevention framework to secure personally identifiable information and ensure regulatory compliance.</p>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">100%</span>
+                                    <span class="metric-label">PII secured</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">Star Award</span>
+                                    <span class="metric-label">recognition</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-overlay">
+                                <div class="project-tech">
+                                    <span>BigQuery</span>
+                                    <span>Optimization</span>
+                                    <span>Analytics</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>3G/4G Network Analytics Platform</h3>
+                            <p>Designed and implemented a comprehensive network usage analytics platform that improved reporting accuracy while significantly reducing query costs.</p>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">50%</span>
+                                    <span class="metric-label">cost reduction</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">Real-time</span>
+                                    <span class="metric-label">analytics</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="experience section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">My journey</span>
+                    <h2 class="section-title">Experience</h2>
+                    <p class="section-description">Building scalable data solutions across industries</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Data Engineer Professional</h3>
+                                <div class="company-info">
+                                    <span class="company">BT Group</span>
+                                    <span class="location">Bengaluru</span>
+                                    <span class="duration">Sep 2023 – Present</span>
+                                </div>
+                            </div>
+                            <div class="timeline-description">
+                                <p>Leading data engineering initiatives for telecom solutions, focusing on scalable pipeline architecture and cost optimization.</p>
+                                <ul class="timeline-highlights">
+                                    <li>Architected BigQuery solutions reducing costs by 50%</li>
+                                    <li>Led PII tokenization initiative earning Star Performer recognition</li>
+                                    <li>Cleared 7-month CDR backlog in under a week</li>
+                                    <li>Mentored junior engineers and established best practices</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Data Engineer</h3>
+                                <div class="company-info">
+                                    <span class="company">Torry Harris</span>
+                                    <span class="location">Bengaluru</span>
+                                    <span class="duration">Aug 2021 – Aug 2023</span>
+                                </div>
+                            </div>
+                            <div class="timeline-description">
+                                <p>Focused on cloud infrastructure and automation, delivering training and optimizing GCP services for enterprise clients.</p>
+                                <ul class="timeline-highlights">
+                                    <li>Automated deployments using Terraform and Deployment Manager</li>
+                                    <li>Delivered GCP training sessions on Qwiklabs platform</li>
+                                    <li>Optimized cloud infrastructure for performance and cost</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3>Associate Cloud Engineer</h3>
+                                <div class="company-info">
+                                    <span class="company">Tudip Technologies</span>
+                                    <span class="location">Pune</span>
+                                    <span class="duration">Sep 2019 – Aug 2021</span>
+                                </div>
+                            </div>
+                            <div class="timeline-description">
+                                <p>Started my data engineering journey working on retail and telecom ETL pipelines and learning cloud technologies.</p>
+                                <ul class="timeline-highlights">
+                                    <li>Developed ETL pipelines for large-scale data processing</li>
+                                    <li>Managed BigQuery and Dataflow workflows</li>
+                                    <li>Implemented data quality validation processes</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="certifications">
+                    <h3>Professional Certifications</h3>
+                    <div class="certs-grid">
+                        <div class="cert-item">
+                            <div class="cert-icon">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <div class="cert-info">
+                                <h4>Professional Data Engineer</h4>
+                                <p>Google Cloud Platform</p>
+                            </div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-icon">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <div class="cert-info">
+                                <h4>Professional Cloud Database Engineer</h4>
+                                <p>Google Cloud Platform</p>
+                            </div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-icon">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <div class="cert-info">
+                                <h4>Professional DevOps Engineer</h4>
+                                <p>Google Cloud Platform</p>
+                            </div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-icon">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <div class="cert-info">
+                                <h4>Associate Cloud Engineer</h4>
+                                <p>Google Cloud Platform</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Get in touch</span>
+                    <h2 class="section-title">Contact Me</h2>
+                    <p class="section-description">Ready to transform your data challenges into opportunities?</p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>poojakumari1107@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <p>+91 6206511575</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Location</h4>
+                                <p>Bellandur, Bengaluru, India</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>LinkedIn</h4>
+                                <p>Connect with me professionally</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="Your Message" rows="6" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer class="w-full border-t">
-      <div class="max-w-5xl mx-auto p-6 text-sm text-gray-500 flex flex-col md:flex-row justify-between">
-        <div>© <span id="year"></span> Vikas Kumar — Built with ❤️</div>
-        <div class="mt-3 md:mt-0">Hosted on GitHub Pages • <a href="#">Contact</a></div>
-      </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Puja Kumari</h3>
+                    <p>Transforming data into insights, one pipeline at a time.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/puja-k-327392176" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="mailto:poojakumari1107@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+916206511575" class="social-link">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Puja Kumari. All rights reserved.</p>
+                <p class="footer-tagline">Delivering secure, scalable, and cost-optimized data solutions</p>
+            </div>
+        </div>
     </footer>
-  </div>
 
-  <script>
-    // small interactivity
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // mobile menu
-    const menuBtn = document.getElementById('menuBtn');
-    if (menuBtn) {
-      menuBtn.addEventListener('click', ()=>{
-        const mdnav = document.querySelector('nav');
-        if (mdnav) mdnav.classList.toggle('hidden');
-      });
-    }
-  </script>
-</body>
-</html>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    
