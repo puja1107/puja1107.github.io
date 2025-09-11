@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vikas Kumar — Software Developer</title>
+  <meta name="description" content="Vikas Kumar — Full-stack developer (Ruby on Rails). Portfolio, projects, blog and contact." />
+
+  <!-- Tailwind (CDN for quick prototype) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Small custom styles */
+    .glass { background: rgba(255,255,255,0.6); backdrop-filter: blur(6px); }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+  <!-- Container -->
+  <div class="min-h-screen flex flex-col">
+    <!-- Nav -->
+    <header class="w-full border-b bg-white/60 sticky top-0 z-30">
+      <div class="max-w-5xl mx-auto flex items-center justify-between p-4">
+        <a href="#home" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 to-pink-500 flex items-center justify-center text-white font-bold">VK</div>
+          <div class="hidden md:block">
+            <div class="font-semibold">Vikas Kumar</div>
+            <div class="text-xs text-gray-500">Full-stack developer • Ruby on Rails</div>
+          </div>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#projects" class="hover:underline">Projects</a>
+          <a href="#about" class="hover:underline">About</a>
+          <a href="#blog" class="hover:underline">Blog</a>
+          <a href="#contact" class="hover:underline">Contact</a>
+          <a href="https://github.com/your-username" target="_blank" rel="noopener" class="px-3 py-1 border rounded-md">GitHub</a>
+        </nav>
+        <div class="md:hidden">
+          <button id="menuBtn" aria-label="menu">☰</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <main id="home" class="flex-grow">
+      <section class="max-w-5xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">Hi — I’m Vikas Kumar.<br class="hidden sm:inline"> I build web apps and developer tools.</h1>
+          <p class="text-lg text-gray-600 mb-6">Full-stack developer specializing in Ruby on Rails, data pipelines, and AI integrations. I build maintainable systems and delightful user experiences.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="#projects" class="px-5 py-3 bg-indigo-600 text-white rounded-lg shadow hover:opacity-95">See projects</a>
+            <a href="#contact" class="px-5 py-3 border rounded-lg">Hire me</a>
+            <a href="/resume.pdf" class="px-4 py-2 text-sm border rounded-lg">Download resume</a>
+          </div>
+
+          <div class="mt-6 grid grid-cols-2 gap-3 text-sm text-gray-600">
+            <div class="p-3 glass rounded-lg">🇮🇳 Based in India</div>
+            <div class="p-3 glass rounded-lg">💼 Open to Full-time / Contract</div>
+            <div class="p-3 glass rounded-lg">📂 10+ projects</div>
+            <div class="p-3 glass rounded-lg">📧 vikas@example.com</div>
+          </div>
+        </div>
+
+        <div class="mx-auto w-full max-w-md">
+          <div class="bg-white rounded-2xl shadow p-6">
+            <img src="https://placehold.co/600x400?text=Project+Screenshot" alt="project" class="rounded-lg w-full mb-4">
+            <h3 class="font-semibold">Featured project — QuizApp</h3>
+            <p class="text-sm text-gray-600 mb-3">A school-quiz web app built with Ruby on Rails and Tailwind. Includes admin panel, student dashboards, and real-time quizzes.</p>
+            <div class="flex gap-3">
+              <a href="#projects" class="text-sm px-3 py-2 border rounded">View projects</a>
+              <a href="https://github.com/your-username/quizapp" target="_blank" rel="noopener" class="text-sm px-3 py-2 border rounded">Source</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="max-w-5xl mx-auto p-6">
+        <h2 class="text-2xl font-bold mb-4">Selected projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Project Card 1 -->
+          <article class="bg-white rounded-2xl shadow p-6">
+            <h3 class="font-semibold">QuizApp — School quiz platform</h3>
+            <p class="text-sm text-gray-600 mb-3">Rails, PostgreSQL, Redis, StimulusJS, ActionCable.</p>
+            <div class="flex justify-between items-center">
+              <div class="text-xs text-gray-500">Mar 2025</div>
+              <div class="flex gap-2">
+                <a href="#" class="text-xs px-2 py-1 border rounded">Live</a>
+                <a href="https://github.com/your-username/quizapp" target="_blank" class="text-xs px-2 py-1 border rounded">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project Card 2 -->
+          <article class="bg-white rounded-2xl shadow p-6">
+            <h3 class="font-semibold">Chatbot Integration</h3>
+            <p class="text-sm text-gray-600 mb-3">Rails + OpenRouter/DeepSeek integration for product search and data fallback.</p>
+            <div class="flex justify-between items-center">
+              <div class="text-xs text-gray-500">Jun 2025</div>
+              <div class="flex gap-2">
+                <a href="#" class="text-xs px-2 py-1 border rounded">Demo</a>
+                <a href="https://github.com/your-username/chatbot" target="_blank" class="text-xs px-2 py-1 border rounded">Code</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="max-w-5xl mx-auto p-6">
+        <h2 class="text-2xl font-bold mb-4">About me</h2>
+        <div class="bg-white rounded-2xl shadow p-6 text-gray-700">
+          <p class="mb-3">I am a full-stack developer with 5+ years of experience building web applications, internal tools, and integrations. I enjoy writing clean code, mentoring teammates, and automating repetitive workflows.</p>
+          <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600">
+            <li>Ruby on Rails</li>
+            <li>JavaScript (ES6+), Stimulus</li>
+            <li>MySQL / PostgreSQL</li>
+            <li>Docker, Apache, Ubuntu</li>
+            <li>Airflow, BigQuery (data pipelines)</li>
+            <li>RSpec, Capybara (tests)</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Blog teaser -->
+      <section id="blog" class="max-w-5xl mx-auto p-6">
+        <h2 class="text-2xl font-bold mb-4">Latest posts</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <article class="bg-white rounded-lg shadow p-4">
+            <h4 class="font-semibold">Mastering the Bar Exam — Strategies for law students</h4>
+            <p class="text-xs text-gray-500 mt-2">Sep 2025 • studyfetch reference</p>
+          </article>
+          <article class="bg-white rounded-lg shadow p-4">
+            <h4 class="font-semibold">What is GPA — UK system explained</h4>
+            <p class="text-xs text-gray-500 mt-2">Aug 2025</p>
+          </article>
+          <article class="bg-white rounded-lg shadow p-4">
+            <h4 class="font-semibold">Designing data quality dashboards</h4>
+            <p class="text-xs text-gray-500 mt-2">Jul 2025</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="max-w-5xl mx-auto p-6 mb-12">
+        <h2 class="text-2xl font-bold mb-4">Contact</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-2xl shadow p-6">
+            <p class="mb-3">Want to work together? Send a message or email me directly.</p>
+            <form action="mailto:vikas@example.com" method="post" encType="text/plain" class="space-y-3">
+              <input class="w-full border rounded p-2" type="text" name="name" placeholder="Your name" required>
+              <input class="w-full border rounded p-2" type="email" name="email" placeholder="Your email" required>
+              <textarea class="w-full border rounded p-2" name="message" rows="4" placeholder="Message" required></textarea>
+              <div class="flex gap-3">
+                <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded">Send</button>
+                <a href="mailto:vikas@example.com" class="px-4 py-2 border rounded">Email</a>
+              </div>
+            </form>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow p-6">
+            <h4 class="font-semibold">Quick links</h4>
+            <ul class="mt-3 text-sm text-gray-600 space-y-2">
+              <li>GitHub: <a href="https://github.com/your-username" target="_blank">github.com/your-username</a></li>
+              <li>LinkedIn: <a href="https://linkedin.com/in/your-username" target="_blank">linkedin.com/in/your-username</a></li>
+              <li>Resume: <a href="/resume.pdf">/resume.pdf</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t">
+      <div class="max-w-5xl mx-auto p-6 text-sm text-gray-500 flex flex-col md:flex-row justify-between">
+        <div>© <span id="year"></span> Vikas Kumar — Built with ❤️</div>
+        <div class="mt-3 md:mt-0">Hosted on GitHub Pages • <a href="#">Contact</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // small interactivity
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    if (menuBtn) {
+      menuBtn.addEventListener('click', ()=>{
+        const mdnav = document.querySelector('nav');
+        if (mdnav) mdnav.classList.toggle('hidden');
+      });
+    }
+  </script>
+</body>
+</html>
