@@ -293,6 +293,7 @@
             height: 100%;
             background: var(--gradient-primary);
             opacity: 0.05;
+            pointer-events: none;
         }
 
         .floating-shapes {
@@ -322,6 +323,8 @@
         }
 
         .hero-content {
+            position: relative;
+            z-index: 1;
             display: grid;
             grid-template-columns: 1fr 400px;
             gap: 4rem;
@@ -416,6 +419,14 @@
             display: flex;
             gap: 1rem;
             margin-bottom: 3rem;
+            pointer-events: auto !important;
+        }
+
+        .hero-buttons a, .hero-buttons button {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            user-select: auto !important;
+            -webkit-user-select: auto !important;
         }
 
         .btn {
@@ -1215,6 +1226,18 @@
                .form-group textarea {
             resize: vertical;
             min-height: 120px;
+        }
+
+        /* Focus styles for accessibility */
+        *:focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
         }
 
         /* Footer */

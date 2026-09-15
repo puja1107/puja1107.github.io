@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Puja Kumari - GCP Data Engineer | Data Engineering Specialist</title>
     <meta name="description" content="Puja Kumari - GCP Data Engineer & Data Engineering Specialist with 7+ years of experience building scalable data pipelines, cloud data platforms and analytics solutions using BigQuery, Dataflow, Cloud Composer, Python and SQL.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Puja Kumari — GCP Data Engineer Portfolio">
+    <meta property="og:description" content="7+ years building scalable data pipelines, cloud data platforms & analytics solutions on GCP. BigQuery, Dataflow, Cloud Composer, Python, SQL.">
+    <meta property="og:image" content="assets/images/puja_kumari.webp">
+    <meta property="og:url" content="https://puja1107.github.io">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Puja Kumari Portfolio">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Puja Kumari — GCP Data Engineer Portfolio">
+    <meta name="twitter:description" content="7+ years building scalable data pipelines, cloud data platforms & analytics solutions on GCP.">
+    <meta name="twitter:image" content="assets/images/puja_kumari.webp">
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -17,6 +35,7 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👩‍💻</text></svg>">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/puja_kumari.webp">
 </head>
 <body>
     <!-- Loading Screen -->
@@ -141,10 +160,10 @@
                             <a href="https://www.linkedin.com/in/puja-k-327392176" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn Profile">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="mailto:poojakumari1107@gmail.com" class="social-link" aria-label="Send Email">
+                            <a href="#" id="hero-email-reveal" class="social-link" aria-label="Reveal Email" data-masked="pooja***@gmail.com" data-real="poojakumari1107@gmail.com">
                                 <i class="fas fa-envelope"></i>
                             </a>
-                            <a href="tel:+916206511575" class="social-link" aria-label="Call Phone">
+                            <a href="#" id="hero-phone-reveal" class="social-link" aria-label="Reveal Phone" data-masked="+91 ***** 1575" data-real="+916206511575">
                                 <i class="fas fa-phone"></i>
                             </a>
                         </div>
@@ -154,7 +173,10 @@
                         <div class="image-container">
                             <div class="profile-card">
                                 <div class="card-inner">
-                                    <img src="assets/images/puja_kumari.png" alt="Puja Kumari" class="profile-img">
+                                    <picture>
+                                     <source srcset="assets/images/puja_kumari.webp" type="image/webp">
+                                     <img src="assets/images/puja_kumari.png" alt="Puja Kumari - GCP Data Engineer" class="profile-img" loading="lazy" decoding="async" width="350" height="450">
+                                 </picture>
                                     <div class="profile-overlay">
                                         <div class="tech-icons">
                                             <i class="fab fa-google" title="Google Cloud Platform"></i>
@@ -668,19 +690,11 @@
                             </div>
                             <div class="contact-text">
                                 <h4>Email</h4>
-                                <p><a href="mailto:poojakumari1107@gmail.com" style="color: inherit; text-decoration: none;">poojakumari1107@gmail.com</a></p>
+                                <p><a href="#" class="contact-reveal" data-masked="pooja***@gmail.com" data-real="poojakumari1107@gmail.com" style="color: inherit; text-decoration: none;">pooja***@gmail.com</a></p>
                             </div>
                         </div>
 
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Phone</h4>
-                                <p><a href="tel:+916206511575" style="color: inherit; text-decoration: none;">+91 6206511575</a></p>
-                            </div>
-                        </div>
+                        <!-- Phone number removed -->
 
                         <div class="contact-item">
                             <div class="contact-icon">
@@ -704,7 +718,7 @@
                     </div>
 
                     <div class="contact-form">
-                        <form id="contactForm">
+                        <form id="contactForm" action="https://formspree.io/f/xnnwkgwq" method="POST">
                             <div class="form-group">
                                 <input type="text" id="name" name="name" placeholder="Your Name" required>
                             </div>
@@ -721,7 +735,8 @@
                                 <span>Send Message</span>
                                 <i class="fas fa-paper-plane"></i>
                             </button>
-                        </form>
+                        <p id="form-status" style="margin-top:1rem;font-size:0.9rem;display:none;"></p>
+                         </form>
                     </div>
                 </div>
             </div>
@@ -742,10 +757,10 @@
                         <a href="https://www.linkedin.com/in/puja-k-327392176" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn Profile">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="mailto:poojakumari1107@gmail.com" class="social-link" aria-label="Send Email">
+                        <a href="#" id="footer-email-reveal" class="social-link" aria-label="Reveal Email" data-masked="pooja***@gmail.com">
                             <i class="fas fa-envelope"></i>
                         </a>
-                        <a href="tel:+916206511575" class="social-link" aria-label="Call Phone">
+                        <a href="#" id="footer-phone-reveal" class="social-link" aria-label="Reveal Phone" data-masked="+91 ***** 1575">
                             <i class="fas fa-phone"></i>
                         </a>
                     </div>
@@ -764,6 +779,9 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
+    <!-- Protection Script -->
+    <script src="assets/js/protect.min.js" crossorigin="anonymous"></script>
+    <noscript><meta http-equiv="refresh" content="0;url=assets/js/noscript.html"></noscript>
     <!-- JavaScript -->
     <script src="assets/js/main.js"></script>
 </body>

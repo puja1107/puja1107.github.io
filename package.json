@@ -1,0 +1,24 @@
+{
+  "name": "puja1107.github.io",
+  "version": "1.0.0",
+  "description": "Personal portfolio website showcasing my work as a **GCP Data Engineer** with 7+ years of experience building scalable data pipelines, cloud data platforms, and analytics solutions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puja1107/puja1107.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/puja1107/puja1107.github.io/issues"
+  },
+  "homepage": "https://github.com/puja1107/puja1107.github.io#readme",
+  "dependencies": {
+    "terser": "^5.51.2"
+  }
+}

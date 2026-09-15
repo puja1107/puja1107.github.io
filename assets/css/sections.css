@@ -11,12 +11,6 @@ section.hero {
     margin-top: 80px; /* Push first section below header */
 }
 
-/* Smooth scrolling for the whole page */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px; /* Modern browsers - ensures header doesn't overlap content */
-}
-
 /* Ensure anchor links account for fixed header */
 :target {
     scroll-margin-top: 80px;
