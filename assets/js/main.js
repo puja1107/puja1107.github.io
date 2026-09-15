@@ -214,7 +214,12 @@ window.addEventListener('scroll', () => {
 // Typed Text Effect
 const typedTextSpan = document.querySelector('.typed-text');
 const cursorSpan = document.querySelector('.cursor-type');
-const textArray = ["Data Engineer Professional", "GCP Specialist", "Big Data Expert", "Cloud Solutions Architect"];
+const textArray = [
+    "GCP Data Engineer",
+    "Data Engineering Specialist",
+    "BigQuery & Pipeline Architect",
+    "Cloud Composer & Airflow Expert"
+];
 const typingDelay = 100;
 const erasingDelay = 80;
 const newTextDelay = 2000;
@@ -254,14 +259,17 @@ const animateCounters = () => {
     
     counters.forEach(counter => {
         const target = +counter.getAttribute('data-count');
-        const current = +counter.innerText;
-        const increment = target / 200;
+        const suffix = counter.getAttribute('data-suffix') || '';
+        const rawCurrent = counter.innerText.replace(/[^0-9]/g, '');
+        const current = +rawCurrent;
+        const increment = Math.max(1, Math.ceil(target / 40));
         
         if (current < target) {
-            counter.innerText = Math.ceil(current + increment);
-            setTimeout(animateCounters, 10);
+            const nextVal = Math.min(target, current + increment);
+            counter.innerText = nextVal + suffix;
+            setTimeout(animateCounters, 30);
         } else {
-            counter.innerText = target;
+            counter.innerText = target + suffix;
         }
     });
 };
