@@ -1,403 +1,214 @@
-// Loading Screen
-window.addEventListener('load', () => {
-    const loadingScreen = document.getElementById('loading-screen');
-    loadingScreen.style.opacity = '0';
-    setTimeout(() => {
-        loadingScreen.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }, 500);
+(() => {
+    'use strict';
 
-    // Handle smooth scrolling for all anchor links
-    document.addEventListener('click', (e) => {
-        const target = e.target.closest('a[href^="#"]');
+    const emailAddress = ['pooja', 'kumari', '1107'].join('') + '@' + 'gmail.com';
+    const typedText = document.querySelector('.typed-text');
+    const cursorType = document.querySelector('.cursor-type');
+    const navMenu = document.getElementById('nav-menu');
+    const navToggle = document.getElementById('nav-toggle');
+    const themeToggle = document.getElementById('theme-toggle');
+
+    const scrollToTarget = (targetId) => {
+        const target = document.querySelector(targetId);
         if (!target) return;
-        
-        e.preventDefault();
-        const sectionId = target.getAttribute('href');
-        const section = document.querySelector(sectionId);
-        
-        if (section) {
-            const headerHeight = document.querySelector('.header').offsetHeight;
-            const sectionTop = section.offsetTop - headerHeight;
-            
-            window.scrollTo({
-                top: sectionTop,
-                behavior: 'smooth'
+        const header = document.querySelector('.header');
+        const offset = header ? header.offsetHeight : 0;
+        window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+    };
+
+    const closeMenu = () => {
+        if (!navMenu || !navToggle) return;
+        navMenu.classList.remove('active', 'show');
+        navToggle.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    const copyText = async (value) => {
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(value);
+            return;
+        }
+        const fallback = document.createElement('textarea');
+        fallback.value = value;
+        fallback.setAttribute('readonly', '');
+        fallback.style.position = 'fixed';
+        fallback.style.opacity = '0';
+        document.body.appendChild(fallback);
+        fallback.select();
+        document.execCommand('copy');
+        fallback.remove();
+    };
+
+    const showCopyState = (button, message) => {
+        const original = button.getAttribute('aria-label');
+        button.setAttribute('aria-label', message);
+        button.classList.add('copied');
+        window.setTimeout(() => {
+            button.setAttribute('aria-label', original || 'Copy contact');
+            button.classList.remove('copied');
+        }, 1600);
+    };
+
+    const animateCounters = () => {
+        document.querySelectorAll('.stat-number[data-count]').forEach((counter) => {
+            const target = Number(counter.dataset.count);
+            const suffix = counter.dataset.suffix || '';
+            let current = 0;
+            const tick = () => {
+                current = Math.min(target, current + Math.max(1, Math.ceil(target / 40)));
+                counter.textContent = `${current}${suffix}`;
+                if (current < target) window.setTimeout(tick, 30);
+            };
+            tick();
+        });
+    };
+
+    const animateSkillBars = () => document.querySelectorAll('.skill-fill[data-width]').forEach((bar) => {
+        bar.style.width = bar.dataset.width;
+    });
+
+    const initialize = () => {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            window.setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                document.body.style.overflow = '';
+            }, 500);
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach((link) => {
+            link.addEventListener('click', (event) => {
+                const targetId = link.getAttribute('href');
+                if (!targetId || targetId === '#') return;
+                event.preventDefault();
+                scrollToTarget(targetId);
+                closeMenu();
+            });
+        });
+
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', () => {
+                const isOpen = navMenu.classList.toggle('active');
+                navToggle.classList.toggle('active', isOpen);
+                navMenu.classList.toggle('show', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+            document.addEventListener('click', (event) => {
+                if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) closeMenu();
             });
         }
-    });
-    
-    // Initialize smooth scrolling after page loads
-    initializeSmoothScrolling();
-});
 
-// Smooth Scrolling Function
-function initializeSmoothScrolling() {
-    // Select all links including hero buttons and nav links
-    const links = document.querySelectorAll('a[href^="#"]');
-    
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return; // Ignore empty anchors
-            
-            const targetElement = document.querySelector(targetId);
-            if (!targetElement) return; // Exit if target doesn't exist
-            
-            // Calculate scroll position
-            const headerHeight = document.querySelector('.header').offsetHeight;
-            const targetPosition = targetElement.offsetTop - headerHeight;
-            
-            // Smooth scroll to target
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-            
-            // Update active states
-            if (this.classList.contains('nav-link')) {
-                document.querySelectorAll('.nav-link').forEach(navLink => {
-                    navLink.classList.remove('active');
-                });
-                this.classList.add('active');
+        if (themeToggle) {
+            const setThemeIcon = (isDark) => {
+                themeToggle.innerHTML = `<i class="fas fa-${isDark ? 'sun' : 'moon'}"></i>`;
+                themeToggle.setAttribute('aria-label', isDark ? 'Use light theme' : 'Use dark theme');
+            };
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                setThemeIcon(true);
             }
-            
-            // Close mobile menu if open
-            const navMenu = document.querySelector('.nav-menu');
-            const navToggle = document.querySelector('.nav-toggle');
-            if (navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-    });
-}
-
-// Smooth Scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-            const headerOffset = 80; // Height of your fixed header
-            const elementPosition = targetSection.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
+            themeToggle.addEventListener('click', () => {
+                const isDark = document.documentElement.getAttribute('data-theme') !== 'dark';
+                if (isDark) document.documentElement.setAttribute('data-theme', 'dark');
+                else document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                setThemeIcon(isDark);
             });
+        }
 
-            // Update active state in navigation
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === targetId) {
-                    link.classList.add('active');
+        document.querySelectorAll('.copy-contact').forEach((button) => {
+            button.addEventListener('click', async () => {
+                if (button.dataset.copyKind !== 'email') return;
+                try {
+                    await copyText(emailAddress);
+                    showCopyState(button, 'Email copied');
+                } catch {
+                    showCopyState(button, 'Copy unavailable');
                 }
             });
-        }
-    });
-});
-
-// Mobile Menu
-document.addEventListener('DOMContentLoaded', () => {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    // Toggle menu
-    navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
-    });
-
-    // Close menu when clicking on a nav link
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
         });
-    });
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-});
-
-// Theme Toggle
-const themeToggle = document.getElementById('theme-toggle');
-themeToggle.addEventListener('click', () => {
-    if (document.documentElement.getAttribute('data-theme') === 'dark') {
-        document.documentElement.removeAttribute('data-theme');
-        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        localStorage.setItem('theme', 'light');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        localStorage.setItem('theme', 'dark');
-    }
-});
-
-// Load saved theme
-document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    }
-});
-
-// Navigation Toggle for mobile
-const navToggle = document.getElementById('nav-toggle');
-const navMenu = document.getElementById('nav-menu');
-
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-    navToggle.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('show');
-        navToggle.classList.remove('active');
-    });
-});
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const formData = new FormData(contactForm);
+                const subject = encodeURIComponent(formData.get('subject'));
+                const body = encodeURIComponent(`Name: ${formData.get('name')}\n\n${formData.get('message')}`);
+                window.location.href = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
             });
         }
-    });
-});
 
-// Active navigation link highlighting
-window.addEventListener('scroll', () => {
-    let current = '';
-    const sections = document.querySelectorAll('section');
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
+        const backToTop = document.getElementById('backToTop');
+        if (backToTop) backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Typed Text Effect
-const typedTextSpan = document.querySelector('.typed-text');
-const cursorSpan = document.querySelector('.cursor-type');
-const textArray = [
-    "GCP Data Engineer",
-    "Data Engineering Specialist",
-    "BigQuery & Pipeline Architect",
-    "Cloud Composer & Airflow Expert"
-];
-const typingDelay = 100;
-const erasingDelay = 80;
-const newTextDelay = 2000;
-let textArrayIndex = 0;
-let charIndex = 0;
-
-function type() {
-    if (charIndex < textArray[textArrayIndex].length) {
-        typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-        charIndex++;
-        setTimeout(type, typingDelay);
-    } else {
-        setTimeout(erase, newTextDelay);
-    }
-}
-
-function erase() {
-    if (charIndex > 0) {
-        typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
-        charIndex--;
-        setTimeout(erase, erasingDelay);
-    } else {
-        textArrayIndex++;
-        if (textArrayIndex >= textArray.length) textArrayIndex = 0;
-        setTimeout(type, typingDelay + 1100);
-    }
-}
-
-// Start typing effect
-document.addEventListener('DOMContentLoaded', function() {
-    if (textArray.length) setTimeout(type, newTextDelay + 250);
-});
-
-// Counter Animation for Stats
-const animateCounters = () => {
-    const counters = document.querySelectorAll('.stat-number[data-count]');
-    
-    counters.forEach(counter => {
-        const target = +counter.getAttribute('data-count');
-        const suffix = counter.getAttribute('data-suffix') || '';
-        const rawCurrent = counter.innerText.replace(/[^0-9]/g, '');
-        const current = +rawCurrent;
-        const increment = Math.max(1, Math.ceil(target / 40));
-        
-        if (current < target) {
-            const nextVal = Math.min(target, current + increment);
-            counter.innerText = nextVal + suffix;
-            setTimeout(animateCounters, 30);
-        } else {
-            counter.innerText = target + suffix;
-        }
-    });
-};
-
-// Skill Bars Animation
-const animateSkillBars = () => {
-    const skillBars = document.querySelectorAll('.skill-fill');
-    
-    skillBars.forEach(bar => {
-        const width = bar.getAttribute('data-width');
-        bar.style.width = width;
-    });
-};
-
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.3,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            if (entry.target.classList.contains('hero-stats')) {
-                animateCounters();
+        const textArray = ['GCP Data Engineer', 'Data Engineering Specialist', 'BigQuery & Pipeline Architect', 'Cloud Composer & Airflow Expert'];
+        let textIndex = 0;
+        let characterIndex = 0;
+        const eraseText = () => {
+            if (!typedText) return;
+            typedText.textContent = textArray[textIndex].slice(0, --characterIndex);
+            if (characterIndex > 0) window.setTimeout(eraseText, 70);
+            else {
+                textIndex = (textIndex + 1) % textArray.length;
+                window.setTimeout(typeText, 300);
             }
-            if (entry.target.classList.contains('skills-showcase')) {
-                animateSkillBars();
-            }
-            entry.target.classList.add('animate');
+        };
+        const typeText = () => {
+            if (!typedText || !cursorType) return;
+            const currentText = textArray[textIndex];
+            typedText.textContent = currentText.slice(0, characterIndex++);
+            cursorType.style.visibility = 'visible';
+            if (characterIndex <= currentText.length) window.setTimeout(typeText, 100);
+            else window.setTimeout(eraseText, 2000);
+        };
+        window.setTimeout(typeText, 800);
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('animate');
+                if (entry.target.classList.contains('hero-stats')) animateCounters();
+                if (entry.target.classList.contains('skills-showcase')) animateSkillBars();
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.3, rootMargin: '0px 0px -50px 0px' });
+        ['.hero-stats', '.skills-showcase'].forEach((selector) => {
+            const element = document.querySelector(selector);
+            if (element) observer.observe(element);
+        });
+
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        if (cursor && cursorFollower && window.matchMedia('(pointer: fine)').matches) {
+            document.addEventListener('mousemove', (event) => {
+                cursor.style.left = `${event.clientX}px`;
+                cursor.style.top = `${event.clientY}px`;
+                cursorFollower.style.left = `${event.clientX}px`;
+                cursorFollower.style.top = `${event.clientY}px`;
+            });
         }
+    };
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        const backToTop = document.getElementById('backToTop');
+        if (header) header.classList.toggle('scrolled', window.scrollY > 100);
+        if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 300);
+    }, { passive: true });
+
+    // Discourage casual copying while leaving form fields and controls usable.
+    document.addEventListener('contextmenu', (event) => {
+        if (!event.target.closest('input, textarea, button, a')) event.preventDefault();
     });
-}, observerOptions);
-
-// Observe sections for animation
-document.addEventListener('DOMContentLoaded', () => {
-    const heroStats = document.querySelector('.hero-stats');
-    const skillsShowcase = document.querySelector('.skills-showcase');
-    
-    if (heroStats) observer.observe(heroStats);
-    if (skillsShowcase) observer.observe(skillsShowcase);
-});
-
-// Back to Top Button
-const backToTopBtn = document.getElementById('backToTop');
-
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        backToTopBtn.style.display = 'block';
-    } else {
-        backToTopBtn.style.display = 'none';
-    }
-});
-
-backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-// Custom Cursor (Desktop only)
-if (window.innerWidth > 768) {
-    const cursor = document.querySelector('.cursor');
-    const cursorFollower = document.querySelector('.cursor-follower');
-
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        
-        setTimeout(() => {
-            cursorFollower.style.left = e.clientX + 'px';
-            cursorFollower.style.top = e.clientY + 'px';
-        }, 100);
+    document.addEventListener('keydown', (event) => {
+        const key = event.key.toLowerCase();
+        const blocked = (event.ctrlKey || event.metaKey) && ['c', 'u', 's', 'a', 'p'].includes(key);
+        if (blocked || key === 'f12' || (event.ctrlKey && event.shiftKey && ['i', 'j', 'c'].includes(key))) event.preventDefault();
     });
 
-    // Hide cursors on mobile
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        cursor.style.display = 'none';
-        cursorFollower.style.display = 'none';
-    }
-    
-}
-
-// Contact Form Handling
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(this);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const subject = formData.get('subject');
-    const message = formData.get('message');
-    
-    // Simple validation
-    if (!name || !email || !subject || !message) {
-        alert('Please fill in all fields');
-        return;
-    }
-    
-    // Here you would typically send the data to a server
-    // For now, we'll just show a success message
-    alert('Thank you for your message! I will get back to you soon.');
-    this.reset();
-});
-
-// Header scroll effect
-window.addEventListener('scroll', () => {
-    const header = document.getElementById('header');
-    if (window.scrollY > 100) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
-
-// Add scrolled class styling
-const style = document.createElement('style');
-style.textContent = `
-    .header.scrolled {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        box-shadow: var(--shadow-light);
-    }
-    
-    [data-theme="dark"] .header.scrolled {
-        background: rgba(15, 23, 42, 0.95);
-    }
-`;
-document.head.appendChild(style);
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialize);
+    else initialize();
+})();

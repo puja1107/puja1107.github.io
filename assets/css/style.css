@@ -46,6 +46,17 @@
             background-color: var(--bg-primary);
             overflow-x: hidden;
             transition: var(--transition);
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        input,
+        textarea,
+        button,
+        a,
+        .contact-copy {
+            -webkit-user-select: auto;
+            user-select: auto;
         }
 
         .container {
@@ -293,6 +304,7 @@
             height: 100%;
             background: var(--gradient-primary);
             opacity: 0.05;
+            pointer-events: none;
         }
 
         .floating-shapes {
@@ -465,12 +477,21 @@
             color: var(--text-secondary);
             text-decoration: none;
             transition: var(--transition);
+            border: 0;
+            cursor: pointer;
+            font: inherit;
         }
 
         .social-link:hover {
             background: var(--primary-color);
             color: white;
             transform: translateY(-2px);
+        }
+
+        .social-link.copied,
+        .contact-copy.copied {
+            background: var(--accent-color);
+            color: white;
         }
 
         .hero-image {
@@ -509,8 +530,16 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            min-width: 0; /* Constrain min-width for layout */
             background: var(--gradient-primary);
+
+        .contact-info,
+        .contact-form,
+        .contact-item,
+        .contact-text {
+            min-width: 0; /* Constrain min-width for layout */
+            max-width: 100%; /* Ensure elements do not overflow */
+        }
             opacity: 0.1;
             display: flex;
             align-items: flex-end;
@@ -1212,6 +1241,21 @@
             border-color: var(--primary-color);
         }
 
+        .contact-copy {
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .contact-copy:hover,
+        .contact-copy:focus-visible {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
                .form-group textarea {
             resize: vertical;
             min-height: 120px;
@@ -1270,9 +1314,17 @@
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            display: none;
+            display: grid;
+            place-items: center;
+            opacity: 0;
+            pointer-events: none;
             z-index: 1000;
             transition: var(--transition);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .back-to-top:hover {
